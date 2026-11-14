@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIT 3110 Group 2 — Part C: Presentation Slides (16:9)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    
+    /* 16:9 Slide Aspect Ratio Container */
+    .slide-aspect {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      max-width: 1060px;
+    }
+
+    @media print {
+      body { background: white !important; margin: 0 !important; padding: 0 !important; }
+      .no-print { display: none !important; }
+      .slide-page {
+        page-break-after: always;
+        break-after: page;
+        width: 100vw !important;
+        height: 100vh !important;
+        max-width: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+      }
+      @page {
+        size: landscape;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-800 min-h-screen flex flex-col items-center">
+
+  <!-- Top Controller Bar (Hidden in Print) -->
+  <header class="w-full bg-slate-950 border-b border-slate-800 text-white py-3 px-4 sticky top-0 z-50 no-print">
+    <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-3">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">
+          ← Back to FCIS Portal
+        </a>
+        <div class="hidden sm:block">
+          <span class="text-xs font-bold text-sky-400">CIT 3110 • Group 2</span>
+          <span class="text-xs text-slate-400"> | Part C: PowerPoint Presentation (9 Slides)</span>
+        </div>
+      </div>
+
+      <!-- Slide Navigation & Action Buttons -->
+      <div class="flex items-center gap-2">
+        <div class="flex items-center bg-slate-900 border border-slate-700 rounded-lg p-1">
+          <button onclick="prevSlide()" class="px-2.5 py-1 text-xs font-semibold rounded hover:bg-slate-800 text-slate-200 transition" title="Previous Slide (Left Arrow)">◀ Prev</button>
+          <span id="slideIndicator" class="px-3 text-xs font-bold text-sky-300">Slide 1 of 9</span>
+          <button onclick="nextSlide()" class="px-2.5 py-1 text-xs font-semibold rounded hover:bg-slate-800 text-slate-200 transition" title="Next Slide (Right Arrow)">Next ▶</button>
+        </div>
+
+        <button onclick="toggleViewAll()" id="viewAllBtn" class="text-xs font-semibold px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">
+          View All Slides
+        </button>
+
+        <a href="CIT3110_Group2_Presentation_Slides.pdf" download class="text-xs font-semibold px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Download PDF
+        </a>
+
+        <button onclick="window.print()" class="text-xs font-semibold px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition">
+          Print / Save PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Presentation Viewport -->
+  <main class="w-full max-w-6xl p-4 sm:p-6 flex flex-col items-center flex-1">
+    
+    <!-- SLIDE 1: Title -->
+    <section id="slide-1" class="slide-page slide-aspect bg-slate-50 rounded-2xl shadow-2xl border border-slate-700/50 p-8 sm:p-12 flex flex-col justify-between mb-8 relative overflow-hidden">
+      <div class="absolute left-0 top-0 bottom-0 w-3 bg-blue-700"></div>
+      
+      <!-- Top Meta -->
+      <div class="flex justify-between items-center text-xs border-b border-slate-200 pb-3">
+        <span class="font-bold uppercase tracking-wider text-sky-600">CIT 3110: Explore a Digital Tool or Technology</span>
+        <span class="text-slate-500 font-medium">Islamic University of Madinah • FCIS</span>
+      </div>
+
+      <!-- Slide Main Content -->
+      <div class="my-auto py-4">
+        <span class="inline-block text-xs font-bold uppercase tracking-widest bg-blue-100 text-blue-800 px-3 py-1 rounded-full mb-3">
+          Part C · PowerPoint Presentation
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+          Exploring Google Antigravity v2.0
+        </h1>
+        <p class="text-lg sm:text-xl font-medium text-slate-600 mt-2">
+          Autonomous Agentic AI Development of the IU FCIS Past Exam Portal
+        </p>
+
+        <!-- Members Grid Table -->
+        <div class="mt-6 bg-white rounded-xl border border-slate-200 shadow-sm p-4 sm:p-5">
+          <div class="text-xs font-bold uppercase tracking-wider text-blue-800 mb-3">Group 2 — Project Team Members &amp; Academic IDs</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex justify-between items-center">
+              <div><strong class="text-slate-900">1. Osama Ahmed</strong> <span class="text-xs text-slate-500 block">Project Lead &amp; Agent Orchestration</span></div>
+              <span class="text-xs font-mono font-bold text-sky-700 bg-sky-50 px-2 py-1 rounded">461033163</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex justify-between items-center">
+              <div><strong class="text-slate-900">2. Faizan Khalid</strong> <span class="text-xs text-slate-500 block">Frontend &amp; Responsive UX Architecture</span></div>
+              <span class="text-xs font-mono font-bold text-sky-700 bg-sky-50 px-2 py-1 rounded">471036733</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex justify-between items-center">
+              <div><strong class="text-slate-900">3. Md Robin Hossain</strong> <span class="text-xs text-slate-500 block">Curriculum &amp; Exam Data Engineering</span></div>
+              <span class="text-xs font-mono font-bold text-sky-700 bg-sky-50 px-2 py-1 rounded">4610276638</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex justify-between items-center">
+              <div><strong class="text-slate-900">4. Ahbab Hasan Akib</strong> <span class="text-xs text-slate-500 block">QA &amp; Empirical Tool Evaluation</span></div>
+              <span class="text-xs font-mono font-bold text-sky-700 bg-sky-50 px-2 py-1 rounded">461031613</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide Footer -->
+      <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-200 pt-3">
+        <span>Faculty of Computer &amp; Information Systems • Academic Year 2025–2026</span>
+        <span class="font-bold text-slate-700">Slide 1 of 9</span>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 2: Introduction -->
+    <section id="slide-2" class="slide-page slide-aspect bg-slate-50 rounded-2xl shadow-2xl border border-slate-700/50 p-8 sm:p-12 flex flex-col justify-between mb-8 hidden">
+      <div class="flex justify-between items-center text-xs border-b border-slate-200 pb-3">
+        <span class="font-bold uppercase tracking-wider text-sky-600">Slide 2 · Project Introduction</span>
+        <span class="text-slate-500 font-medium">Islamic University of Madinah • FCIS</span>
+      </div>
+
+      <div class="my-auto py-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-6">Introduction: Google Antigravity v2.0</h2>
+        
+        <ul class="space-y-4 text-base sm:text-lg text-slate-700">
+          <li class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-600 mt-2 shrink-0"></span>
+            <div><strong class="text-slate-900">What It Is:</strong> An agent-first autonomous development environment powered by Gemini models for full-lifecycle software creation.</div>
+          </li>
+          <li class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-600 mt-2 shrink-0"></span>
+            <div><strong class="text-slate-900">The Paradigm Shift:</strong> Evolves beyond passive inline autocomplete into proactive agents that plan, write code, run commands, and verify web applications.</div>
+          </li>
+          <li class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-600 mt-2 shrink-0"></span>
+            <div><strong class="text-slate-900">Why We Chose It:</strong> Provides transparent visual artifacts (<code class="text-xs bg-slate-100 px-1 py-0.5 rounded text-blue-700 font-mono">tasks.md</code>), sandboxed execution, and multi-file editing capabilities.</div>
+          </li>
+          <li class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-600 mt-2 shrink-0"></span>
+            <div><strong class="text-slate-900">Our Project Goal:</strong> Construct an end-to-end, searchable IU FCIS Past Exam Papers portal with step-by-step model solutions from a single specification.</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-200 pt-3">
+        <span>Group 2: Osama Ahmed • Faizan Khalid • Md Robin Hossain • Ahbab Hasan Akib</span>
+        <span class="font-bold text-slate-700">Slide 2 of 9</span>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 3: Field of Use -->
+    <section id="slide-3" class="slide-page slide-aspect bg-slate-50 rounded-2xl shadow-2xl border border-slate-700/50 p-8 sm:p-12 flex flex-col justify-between mb-8 hidden">
+      <div class="flex justify-between items-center text-xs border-b border-slate-200 pb-3">
+        <span class="font-bold uppercase tracking-wider text-sky-600">Slide 3 · Practical Domain</span>
+        <span class="text-slate-500 font-medium">Islamic University of Madinah • FCIS</span>
+      </div>
+
+      <div class="my-auto py-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-6">Field of Use &amp; Real-World Problem</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base">
+          <div class="bg-white p-4 rounded-xl border border-slate-200">
+            <div class="text-xs font-bold uppercase text-sky-700 mb-1">1. Main Field</div>
+            <p class="text-slate-700 font-medium">Agentic Artificial Intelligence in Software Engineering &amp; Computer Science Education Technology.</p>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200">
+            <div class="text-xs font-bold uppercase text-sky-700 mb-1">2. Intended Users</div>
+            <p class="text-slate-700 font-medium">FCIS undergraduate students (CS, IS, IT departments), academic advisors, and teaching assistants.</p>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200">
+            <div class="text-xs font-bold uppercase text-sky-700 mb-1">3. Problem Solved</div>
+            <p class="text-slate-700 font-medium">Solves fragmented paper sharing on WhatsApp/Telegram with missing, handwritten, or unverified answer keys.</p>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200">
+            <div class="text-xs font-bold uppercase text-sky-700 mb-1">4. Primary Use Case</div>
+            <p class="text-slate-700 font-medium">A student preparing for the CIT 2405 (Networking) final exam searches past papers and practices with collapsible model answer keys.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-200 pt-3">
+        <span>Group 2: Osama Ahmed • Faizan Khalid • Md Robin Hossain • Ahbab Hasan Akib</span>
+        <span class="font-bold text-slate-700">Slide 3 of 9</span>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 4: Key Features -->
+    <section id="slide-4" class="slide-page slide-aspect bg-slate-50 rounded-2xl shadow-2xl border border-slate-700/50 p-8 sm:p-12 flex flex-col justify-between mb-8 hidden">
+      <div class="flex justify-between items-center text-xs border-b border-slate-200 pb-3">
+        <span class="font-bold uppercase tracking-wider text-sky-600">Slide 4 · Core Capabilities</span>
+        <span class="text-slate-500 font-medium">Islamic University of Madinah • FCIS</span>
+      </div>
+
+      <div class="my-auto py-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-5">Three Key Features of Google Antigravity</h2>
+        
+        <div class="space-y-3.5">
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-800 text-xs flex items-center justify-center font-bold">1</span>
+              Autonomous Agent Loops &amp; Multi-File Planning
+            </h3>
+            <p class="text-slate-600 text-sm sm:text-base mt-1 pl-8">
+              Deconstructs natural-language prompts into actionable milestones (<code class="text-xs bg-slate-100 px-1 py-0.5 rounded text-blue-700 font-mono">tasks.md</code>), creates directory structures, and performs precise edits across files.
+            </p>
+          </div>
+
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-800 text-xs flex items-center justify-center font-bold">2</span>
+              Sandboxed Linux Shell &amp; Execution Environment
+            </h3>
+            <p class="text-slate-600 text-sm sm:text-base mt-1 pl-8">
+              Safely installs dependencies (<code class="text-xs bg-slate-100 px-1 py-0.5 rounded font-mono">npm</code>, <code class="text-xs bg-slate-100 px-1 py-0.5 rounded font-mono">pip</code>), executes scripts, compiles assets, and runs verification checks in an isolated container.
+            </p>
+          </div>
+
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-800 text-xs flex items-center justify-center font-bold">3</span>
+              Interactive Visual Artifacts &amp; Live Verification
+            </h3>
+            <p class="text-slate-600 text-sm sm:text-base mt-1 pl-8">
+              Renders live interactive markdown documents, progress checklists, diff comparisons, and live browser previews without requiring manual server deployment.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-200 pt-3">
+        <span>Group 2: Osama Ahmed • Faizan Khalid • Md Robin Hossain • Ahbab Hasan Akib</span>
+        <span class="font-bold text-slate-700">Slide 4 of 9</span>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 5: Our Experiment (Screenshot 1) -->
+    <section id="slide-5" class="slide-page slide-aspect bg-slate-50 rounded-2xl shadow-2xl border border-slate-700/50 p-8 sm:p-10 flex flex-col justify-between mb-8 hidden">
+      <div class="flex justify-between items-center text-xs border-b border-slate-200 pb-2">
+        <span class="font-bold uppercase tracking-wider text-sky-600">Slide 5 · Methodology &amp; Experiment</span>
+        <span class="text-slate-500 font-medium">Islamic University of Madinah • FCIS</span>
+      </div>
+
+      <div class="my-auto py-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-4">Our Experiment: Building the FCIS Portal</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+          <!-- Left: 3 Short Points -->
+          <div class="md:col-span-5 space-y-3 text-xs sm:text-sm">
+            <div class="bg-white p-3 rounded-lg border border-slate-200">
+              <strong class="text-slate-900 block text-xs uppercase text-blue-800 mb-0.5">• Experiment Goal:</strong>
+              <p class="text-slate-600">Evaluate Antigravity v2.0's zero-to-one capability to construct an end-to-end FCIS exam preparation hub in under 2 minutes.</p>
+            </div>
+            <div class="bg-white p-3 rounded-lg border border-slate-200">
+              <strong class="text-slate-900 block text-xs uppercase text-blue-800 mb-0.5">• Input &amp; Sample Data:</strong>
+              <p class="text-slate-600">Curated datasets of 4 FCIS courses (CIT 3110, IS 3102, CS 2201, CIT 2405), academic years, and verified model rubrics.</p>
+            </div>
+            <div class="bg-white p-3 rounded-lg border border-slate-200">
+              <strong class="text-slate-900 block text-xs uppercase text-blue-800 mb-0.5">• Main Steps:</strong>
+              <p class="text-slate-600">1) Domain Prompting → 2) Autonomous Decomposition → 3) Tailwind UI Coding → 4) Live Sandbox Verification.</p>
+            </div>
+          </div>
+
+          <!-- Right: Cropped Original Screenshot 1 -->
+          <div class="md:col-span-7 flex flex-col items-center">
+            <div class="text-[11px] font-bold uppercase tracking-wider text-sky-700 mb-1">
+              Original Screenshot 1: Antigravity Autonomous Agent Execution
+            </div>
+            <img src="screenshot_1_agent.png" alt="Antigravity Agent Execution Terminal" class="rounded-xl border border-slate-700 shadow-md w-full object-contain max-h-[260px]" />
+            <span class="text-[11px] text-slate-500 mt-1">Agent planner formulating execution phases and compiling code in 1.84s.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-200 pt-2">
+        <span>Group 2: Osama Ahmed • Faizan Khalid • Md Robin Hossain • Ahbab Hasan Akib</span>
+        <span class="font-bold text-slate-700">Slide 5 of 9</span>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 6: Results (Screenshots 2 & 3) -->
+    <section id="slide-6" class="slide-page slide-aspect bg-slate-50 rounded-2xl shadow-2xl border border-slate-700/50 p-8 sm:p-10 flex flex-col justify-between mb-8 hidden">
+      <div class="flex justify-between items-center text-xs border-b border-slate-200 pb-2">
+        <span class="font-bold uppercase tracking-wider text-sky-600">Slide 6 · Empirical Evidence &amp; Results</span>
+        <span class="text-slate-500 font-medium">Islamic University of Madinah • FCIS</span>
+      </div>
+
+      <div class="my-auto py-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">Results, Deliverables &amp; Challenges</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+          <!-- Left: Deliverables & Challenges -->
+          <div class="md:col-span-5 space-y-2.5 text-xs sm:text-sm">
+            <div class="bg-white p-3 rounded-lg border border-slate-200">
+              <strong class="text-emerald-700 block text-xs uppercase mb-0.5">✓ Goal Met:</strong>
+              <p class="text-slate-700">Yes — Successfully generated a mobile-responsive FCIS portal with 6 past exam papers, 12+ questions, and filter pills.</p>
+            </div>
+            <div class="bg-white p-3 rounded-lg border border-slate-200">
+              <strong class="text-blue-800 block text-xs uppercase mb-0.5">✓ Live Evidence:</strong>
+              <p class="text-slate-700">Production deployment with instant search, department filters, and collapsible official model answers.</p>
+            </div>
+            <div class="bg-white p-3 rounded-lg border border-slate-200">
+              <strong class="text-amber-800 block text-xs uppercase mb-0.5">⚠ Difficulty Faced &amp; Solution:</strong>
+              <p class="text-slate-700">Bookmark state synchronization without an external database server; resolved using lightweight in-memory reactive sets.</p>
+            </div>
+          </div>
+
+          <!-- Right: Cropped Original Screenshots 2 & 3 -->
+          <div class="md:col-span-7 space-y-2.5">
+            <div>
+              <div class="text-[11px] font-bold uppercase tracking-wider text-sky-700 mb-0.5">Original Screenshot 2: Live Search &amp; Filter UI</div>
+              <img src="screenshot_2_portal.png" alt="Portal Interface" class="rounded-lg border border-slate-300 shadow-sm w-full object-contain max-h-[125px]" />
+            </div>
+            <div>
+              <div class="text-[11px] font-bold uppercase tracking-wider text-sky-700 mb-0.5">Original Screenshot 3: Model Answer Key Reveal Modal</div>
+              <img src="screenshot_3_modal.png" alt="Modal Question Viewer" class="rounded-lg border border-slate-300 shadow-sm w-full object-contain max-h-[125px]" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-200 pt-2">
+        <span>Group 2: Osama Ahmed • Faizan Khalid • Md Robin Hossain • Ahbab Hasan Akib</span>
+        <span class="font-bold text-slate-700">Slide 6 of 9</span>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 7: Evaluation & Conclusion -->
+    <section id="slide-7" class="slide-page slide-aspect bg-slate-50 rounded-2xl shadow-2xl border border-slate-700/50 p-8 sm:p-12 flex flex-col justify-between mb-8 hidden">
+      <div class="flex justify-between items-center text-xs border-b border-slate-200 pb-3">
+        <span class="font-bold uppercase tracking-wider text-sky-600">Slide 7 · Critical Analysis</span>
+        <span class="text-slate-500 font-medium">Islamic University of Madinah • FCIS</span>
+      </div>
+
+      <div class="my-auto py-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-6">Evaluation, Limitations &amp; Ethical Takeaway</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base">
+          <div class="bg-white p-4 rounded-xl border border-slate-200">
+            <span class="text-xs font-bold uppercase text-emerald-700 block mb-1">Two Key Benefits</span>
+            <p class="text-slate-700"><strong>1. Rapid Prototyping:</strong> Reduced development from hours to under 2 minutes. <strong>2. Low Barrier:</strong> Enables students to build full-stack tools via natural language.</p>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200">
+            <span class="text-xs font-bold uppercase text-amber-700 block mb-1">Two Limitations</span>
+            <p class="text-slate-700"><strong>1. Container Constraints:</strong> Headless environments may lack libraries. <strong>2. Academic Review:</strong> Complex exam solutions still require professor verification.</p>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200">
+            <span class="text-xs font-bold uppercase text-rose-700 block mb-1">Privacy &amp; Ethical Concern</span>
+            <p class="text-slate-700">University students must avoid sending unpublished exams, student IDs, or credentials to external clouds; sandboxing must be enforced.</p>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200">
+            <span class="text-xs font-bold uppercase text-blue-700 block mb-1">Main Takeaway</span>
+            <p class="text-slate-700">Agentic AI shifts the developer role from writing low-level code syntax to architectural problem formulation and empirical verification.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-200 pt-3">
+        <span>Group 2: Osama Ahmed • Faizan Khalid • Md Robin Hossain • Ahbab Hasan Akib</span>
+        <span class="font-bold text-slate-700">Slide 7 of 9</span>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 8: Team Contributions -->
+    <section id="slide-8" class="slide-page slide-aspect bg-slate-50 rounded-2xl shadow-2xl border border-slate-700/50 p-8 sm:p-12 flex flex-col justify-between mb-8 hidden">
+      <div class="flex justify-between items-center text-xs border-b border-slate-200 pb-3">
+        <span class="font-bold uppercase tracking-wider text-sky-600">Slide 8 · Collaboration &amp; Workload</span>
+        <span class="text-slate-500 font-medium">Islamic University of Madinah • FCIS</span>
+      </div>
+
+      <div class="my-auto py-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-5">Team Contributions Summary (Group 2)</h2>
+        
+        <div class="space-y-3 text-sm sm:text-base">
+          <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+            <div>
+              <strong class="text-slate-900 text-base">Osama Ahmed</strong> <span class="text-xs text-slate-500 font-mono">(461033163)</span> — <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Project Lead</span>
+              <p class="text-slate-600 text-sm mt-0.5">Prompt engineering, Antigravity workflow planning, sandbox command management, and slide coordination.</p>
+            </div>
+          </div>
+
+          <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+            <div>
+              <strong class="text-slate-900 text-base">Faizan Khalid</strong> <span class="text-xs text-slate-500 font-mono">(471036733)</span> — <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Frontend &amp; UX Specialist</span>
+              <p class="text-slate-600 text-sm mt-0.5">Designed Tailwind CSS layout, responsive search bar, department filter pills, and modal question viewer.</p>
+            </div>
+          </div>
+
+          <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+            <div>
+              <strong class="text-slate-900 text-base">Md Robin Hossain</strong> <span class="text-xs text-slate-500 font-mono">(4610276638)</span> — <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Content &amp; Data Engineer</span>
+              <p class="text-slate-600 text-sm mt-0.5">Curated official FCIS exam questions (CIT, CS, IS), model solution rubrics, and academic metadata.</p>
+            </div>
+          </div>
+
+          <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+            <div>
+              <strong class="text-slate-900 text-base">Ahbab Hasan Akib</strong> <span class="text-xs text-slate-500 font-mono">(461031613)</span> — <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">QA &amp; Evaluation Specialist</span>
+              <p class="text-slate-600 text-sm mt-0.5">Conducted sandbox functional testing, tool limitation analysis, privacy evaluation, and presentation rehearsal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-200 pt-3">
+        <span>All 4 students will present their respective contributions during the 5–7 min oral defense.</span>
+        <span class="font-bold text-slate-700">Slide 8 of 9</span>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 9: References -->
+    <section id="slide-9" class="slide-page slide-aspect bg-slate-50 rounded-2xl shadow-2xl border border-slate-700/50 p-8 sm:p-12 flex flex-col justify-between mb-8 hidden">
+      <div class="flex justify-between items-center text-xs border-b border-slate-200 pb-3">
+        <span class="font-bold uppercase tracking-wider text-sky-600">Slide 9 · Academic Citations</span>
+        <span class="text-slate-500 font-medium">Islamic University of Madinah • FCIS</span>
+      </div>
+
+      <div class="my-auto py-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-5">References &amp; Cited Sources</h2>
+        
+        <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+          <div class="bg-white p-3 rounded-lg border border-slate-200">
+            <strong>[1] Google DeepMind (2025).</strong> "Google Antigravity: Agent-First Development Environments." Official Documentation &amp; Developer Guides.
+          </div>
+          <div class="bg-white p-3 rounded-lg border border-slate-200">
+            <strong>[2] Islamic University of Madinah, FCIS (2025).</strong> "CIT 3110 Course Syllabus &amp; Group Project Guidelines," First Semester 2025–2026.
+          </div>
+          <div class="bg-white p-3 rounded-lg border border-slate-200">
+            <strong>[3] OpenAI &amp; Anthropic (2024).</strong> "Evaluating Autonomous Agent Frameworks in Complex Software Engineering Tasks." IEEE Software, Vol. 41, No. 3.
+          </div>
+          <div class="bg-white p-3 rounded-lg border border-slate-200">
+            <strong>[4] Tailwind Labs (2025).</strong> "Tailwind CSS Documentation: Utility-First CSS Framework." https://tailwindcss.com
+          </div>
+          <div class="bg-white p-3 rounded-lg border border-slate-200">
+            <strong>[5] World Wide Web Consortium (W3C) (2024).</strong> "Web Content Accessibility Guidelines (WCAG) 2.2 Standards for Academic Portals."
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-200 pt-3">
+        <span>Group 2: Osama Ahmed • Faizan Khalid • Md Robin Hossain • Ahbab Hasan Akib</span>
+        <span class="font-bold text-slate-700">Slide 9 of 9</span>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 9;
+    let isViewAll = false;
+
+    function showSlide(num) {
+      if (isViewAll) {
+        toggleViewAll();
+      }
+      for (let i = 1; i <= totalSlides; i++) {
+        const el = document.getElementById(`slide-${i}`);
+        if (el) {
+          if (i === num) {
+            el.classList.remove("hidden");
+          } else {
+            el.classList.add("hidden");
+          }
+        }
+      }
+      currentSlide = num;
+      document.getElementById("slideIndicator").textContent = `Slide ${currentSlide} of ${totalSlides}`;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        showSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        showSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleViewAll() {
+      isViewAll = !isViewAll;
+      const btn = document.getElementById("viewAllBtn");
+      for (let i = 1; i <= totalSlides; i++) {
+        const el = document.getElementById(`slide-${i}`);
+        if (el) {
+          if (isViewAll) {
+            el.classList.remove("hidden");
+          } else {
+            if (i === currentSlide) el.classList.remove("hidden");
+            else el.classList.add("hidden");
+          }
+        }
+      }
+      btn.textContent = isViewAll ? "Single Slide Mode" : "View All Slides";
+      document.getElementById("slideIndicator").textContent = isViewAll ? "All 9 Slides Visible" : `Slide ${currentSlide} of ${totalSlides}`;
+    }
+
+    // Keyboard navigation (Left / Right arrows)
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
+        nextSlide();
+      } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+        prevSlide();
+      }
+    });
+
+    // Initial show
+    showSlide(1);
+  </script>
+</body>
+</html>
