@@ -23,7 +23,7 @@
 
   <!-- Navigation Header -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-20">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center gap-4">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-lg bg-blue-700 text-white flex items-center justify-center font-bold text-lg">
           IU
@@ -34,12 +34,20 @@
         </div>
       </div>
 
-      <div class="flex items-center gap-3">
+      <div class="flex flex-wrap items-center gap-2">
+        <a href="slides.html" class="flex items-center gap-1.5 bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-300 text-xs font-semibold px-3 py-1.5 rounded-lg transition" title="View 9 Widescreen Presentation Slides">
+          <svg class="w-3.5 h-3.5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+          Part C Slides (9)
+        </a>
+        <a href="CIT3110_Group2_Presentation_Slides.pdf" download class="flex items-center gap-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-semibold px-3 py-1.5 rounded-lg transition" title="Download Official Presentation Slides PDF">
+          <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Download PDF
+        </a>
         <span id="savedCounterBadge" class="text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 px-3 py-1.5 rounded-full">
           Saved for Revision: 0
         </span>
-        <button id="PracticeQuizBtn" onclick="openQuickQuiz()" class="bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">
-          Quick Self-Test Mode
+        <button id="PracticeQuizBtn" onclick="openQuickQuiz()" class="bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition">
+          Quick Self-Test
         </button>
       </div>
     </div>
@@ -49,9 +57,14 @@
   <section class="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-10 px-4">
     <div class="max-w-6xl mx-auto">
       <div class="max-w-3xl">
-        <span class="inline-block text-xs font-semibold uppercase tracking-wider bg-blue-500/20 text-sky-300 border border-sky-400/30 px-3 py-1 rounded-full mb-3">
-          Final Exam Preparation Hub
-        </span>
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <span class="inline-block text-xs font-semibold uppercase tracking-wider bg-blue-500/20 text-sky-300 border border-sky-400/30 px-3 py-1 rounded-full">
+            Final Exam Preparation Hub
+          </span>
+          <a href="slides.html" class="inline-flex items-center gap-1.5 text-xs font-semibold bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-400/30 px-3 py-1 rounded-full transition">
+            ★ Part C: Presentation Slides (9 Slides Ready) →
+          </a>
+        </div>
         <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">
           Search Previous Years' University Exam Questions &amp; Model Solutions
         </h2>
