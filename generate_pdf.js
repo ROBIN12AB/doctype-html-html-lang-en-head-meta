@@ -56,10 +56,10 @@ doc.fontSize(22).fillColor('#334155').font('Helvetica')
    .text('Autonomous Agentic AI Development of the IU FCIS Past Exam Portal', 60, 130);
 
 // Box for Group Info
-doc.rect(60, 185, 840, 275).rx(8).fill('#ffffff').stroke('#cbd5e1');
+doc.roundedRect(60, 175, 840, 280, 8).fillAndStroke('#ffffff', '#cbd5e1');
 
 doc.fontSize(16).fillColor('#1d4ed8').font('Helvetica-Bold')
-   .text('GROUP 2 • PROJECT TEAM MEMBERS & STUDENT IDs', 85, 205);
+   .text('GROUP 2 • PROJECT TEAM MEMBERS & STUDENT IDs', 85, 195);
 
 const members = [
   { name: 'Osama Ahmed', id: '461033163', role: 'Project Lead & Agent Orchestration' },
@@ -68,16 +68,16 @@ const members = [
   { name: 'Ahbab Hasan Akib', id: '461031613', role: 'Quality Assurance & Empirical Evaluation' }
 ];
 
-let memY = 240;
+let memY = 228;
 members.forEach((m, idx) => {
-  doc.rect(85, memY - 6, 790, 42).rx(6).fill(idx % 2 === 0 ? '#f1f5f9' : '#ffffff');
+  doc.roundedRect(85, memY - 4, 790, 44, 6).fill(idx % 2 === 0 ? '#f1f5f9' : '#ffffff');
   doc.fontSize(18).fillColor('#0f172a').font('Helvetica-Bold')
-     .text(`${idx + 1}.  ${m.name}`, 100, memY + 3);
+     .text(`${idx + 1}.  ${m.name}`, 100, memY + 6);
   doc.fontSize(16).fillColor('#0284c7').font('Helvetica-Bold')
-     .text(`ID: ${m.id}`, 360, memY + 4);
+     .text(`ID: ${m.id}`, 360, memY + 7);
   doc.fontSize(15).fillColor('#475569').font('Helvetica')
-     .text(`Role: ${m.role}`, 530, memY + 5);
-  memY += 48;
+     .text(`Role: ${m.role}`, 530, memY + 8);
+  memY += 50;
 });
 
 doc.fontSize(13).fillColor('#64748b').font('Helvetica')
@@ -143,9 +143,9 @@ const slide4Points = [
   { label: '3. Interactive Visual Artifacts:', desc: 'Generates real-time visual summaries, markdown review plans, and embedded live screenshots so users inspect results intuitively.' }
 ];
 
-let y4 = 140;
+let y4 = 135;
 slide4Points.forEach(p => {
-  doc.rect(65, y4 - 10, 830, 95).rx(8).fill('#ffffff').stroke('#e2e8f0');
+  doc.roundedRect(65, y4 - 10, 830, 95, 8).fillAndStroke('#ffffff', '#e2e8f0');
   doc.circle(85, y4 + 16, 6).fill('#1d4ed8');
   doc.fontSize(21).fillColor('#0f172a').font('Helvetica-Bold').text(p.label, 105, y4 + 6);
   doc.fontSize(19).fillColor('#334155').font('Helvetica').text(p.desc, 105, y4 + 36, { width: 770, lineGap: 2 });
@@ -176,7 +176,7 @@ s5Left.forEach(p => {
 });
 
 // Right side: Cropped Screenshot 1
-doc.fontSize(12).fillColor('#0284c7').font('Helvetica-Bold').text('ORIGINAL SCREENSHOT 1: AGENT PLANNING & SHELL EXECUTION', 490, 115);
+doc.fontSize(11).fillColor('#0284c7').font('Helvetica-Bold').text('ORIGINAL SCREENSHOT 1: AGENT PLANNING & SHELL EXECUTION', 490, 115);
 doc.image('screenshot_1_agent.png', 490, 135, { width: 410, height: 235 });
 doc.fontSize(13).fillColor('#64748b').font('Helvetica').text('Antigravity v2.0 terminal decomposing tasks & verifying code in sandbox (1.84s).', 490, 385, { width: 410, align: 'center' });
 
@@ -251,7 +251,7 @@ const slide8Points = [
 
 let y8 = 125;
 slide8Points.forEach(p => {
-  doc.rect(65, y8 - 8, 830, 78).rx(6).fill('#ffffff').stroke('#e2e8f0');
+  doc.roundedRect(65, y8 - 8, 830, 78, 6).fillAndStroke('#ffffff', '#e2e8f0');
   doc.circle(85, y8 + 14, 5).fill('#1d4ed8');
   doc.fontSize(20).fillColor('#0f172a').font('Helvetica-Bold').text(p.member, 100, y8 + 4, { continued: true });
   doc.fontSize(17).fillColor('#0284c7').font('Helvetica-Bold').text(`  —  ${p.role}`);
@@ -277,7 +277,7 @@ const references = [
 
 let y9 = 135;
 references.forEach((r, idx) => {
-  doc.rect(65, y9 - 8, 830, 58).rx(6).fill('#ffffff').stroke('#e2e8f0');
+  doc.roundedRect(65, y9 - 8, 830, 58, 6).fillAndStroke('#ffffff', '#e2e8f0');
   doc.fontSize(16).fillColor('#0f172a').font('Helvetica').text(r.ref, 85, y9 + 6, { width: 790, lineGap: 3 });
   y9 += 68;
 });
