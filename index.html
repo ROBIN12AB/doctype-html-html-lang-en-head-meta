@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IU FCIS Past Exam Papers Archive | Final Exam Preparation Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .modal-backdrop { background-color: rgba(15, 23, 42, 0.72); }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+  <!-- Top Academic Banner -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <span>Islamic University of Madinah • Faculty of Computer &amp; Information Systems (FCIS)</span>
+      <span class="text-sky-400 font-medium">Built with Google Antigravity v2.0 • Group 2 (CIT 3110)</span>
+    </div>
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-20">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-blue-700 text-white flex items-center justify-center font-bold text-lg">
+          IU
+        </div>
+        <div>
+          <h1 class="text-lg font-bold text-slate-900 leading-tight">FCIS Past Exam Papers Portal</h1>
+          <p class="text-xs text-slate-500">Previous Years' Final &amp; Midterm Questions Archive</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span id="savedCounterBadge" class="text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 px-3 py-1.5 rounded-full">
+          Saved for Revision: 0
+        </span>
+        <button id="PracticeQuizBtn" onclick="openQuickQuiz()" class="bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">
+          Quick Self-Test Mode
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero & Search Filter Section -->
+  <section class="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-10 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="max-w-3xl">
+        <span class="inline-block text-xs font-semibold uppercase tracking-wider bg-blue-500/20 text-sky-300 border border-sky-400/30 px-3 py-1 rounded-full mb-3">
+          Final Exam Preparation Hub
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">
+          Search Previous Years' University Exam Questions &amp; Model Solutions
+        </h2>
+        <p class="text-slate-300 text-sm mb-6">
+          Filter past final and midterm examination papers by course code, academic year, or topic keyword. Practice with real questions and check step-by-step model answer keys before your final exam.
+        </p>
+      </div>
+
+      <!-- Search & Filter Bar -->
+      <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-200 grid grid-cols-1 md:grid-cols-12 gap-3 text-slate-800">
+        <div class="md:col-span-5 relative">
+          <label for="searchInput" class="sr-only">Search by Course Code, Title, or Topic</label>
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search course (e.g., CIT 3110, SQL, Networking, Python)..."
+            class="w-full pl-3 pr-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:border-blue-600"
+            oninput="filterPapers()"
+          />
+        </div>
+
+        <div class="md:col-span-3">
+          <label for="departmentSelect" class="sr-only">Department</label>
+          <select id="departmentSelect" onchange="filterPapers()" class="w-full py-2.5 px-3 text-sm border border-slate-200 rounded-lg bg-white focus:outline-none focus:border-blue-600">
+            <option value="ALL">All Departments (CS, IS, IT)</option>
+            <option value="CIT">Information Technology (CIT)</option>
+            <option value="CS">Computer Science (CS)</option>
+            <option value="IS">Information Systems (IS)</option>
+          </select>
+        </div>
+
+        <div class="md:col-span-2">
+          <label for="yearSelect" class="sr-only">Academic Year</label>
+          <select id="yearSelect" onchange="filterPapers()" class="w-full py-2.5 px-3 text-sm border border-slate-200 rounded-lg bg-white focus:outline-none focus:border-blue-600">
+            <option value="ALL">All Years</option>
+            <option value="2025">2025 – 2026</option>
+            <option value="2024">2024 – 2025</option>
+            <option value="2023">2023 – 2024</option>
+          </select>
+        </div>
+
+        <div class="md:col-span-2">
+          <button onclick="resetFilters()" class="w-full py-2.5 px-3 text-sm font-medium text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition">
+            Reset Filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Course Filter Pills -->
+      <div class="flex flex-wrap items-center gap-2 mt-4 text-xs">
+        <span class="text-slate-400">Quick Course Filter:</span>
+        <button onclick="setQuickCourse('ALL')" class="px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">All Courses</button>
+        <button onclick="setQuickCourse('CIT 3110')" class="px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-sky-300 border border-slate-700 transition">CIT 3110 (Digital Tools)</button>
+        <button onclick="setQuickCourse('CS 2201')" class="px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-sky-300 border border-slate-700 transition">CS 2201 (Data Structures)</button>
+        <button onclick="setQuickCourse('IS 3102')" class="px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-sky-300 border border-slate-700 transition">IS 3102 (Database Systems)</button>
+        <button onclick="setQuickCourse('CIT 2405')" class="px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-sky-300 border border-slate-700 transition">CIT 2405 (Computer Networks)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <main class="max-w-6xl mx-auto px-4 py-8 flex-1 w-full">
+    <div class="flex flex-wrap justify-between items-center mb-5 gap-2">
+      <div>
+        <h3 class="text-base font-bold text-slate-900" id="resultsCountHeading">Showing 6 Past Exam Papers</h3>
+        <p class="text-xs text-slate-500">Click "View Questions &amp; Answer Key" on any paper to practice and reveal official solutions.</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="showSavedOnlyBtn" onclick="toggleSavedFilter()" class="text-xs font-medium px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 transition">
+          Show Saved Papers Only
+        </button>
+      </div>
+    </div>
+
+    <!-- Exam Paper Cards Grid -->
+    <div id="papersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Dynamically populated by JavaScript -->
+    </div>
+  </main>
+
+  <!-- Exam Question & Solution Viewer Modal -->
+  <div id="paperModal" class="fixed inset-0 modal-backdrop hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] flex flex-col border border-slate-200 overflow-hidden">
+      <div class="px-6 py-4 bg-slate-900 text-white flex justify-between items-start gap-4">
+        <div>
+          <span id="modalBadge" class="text-xs font-semibold uppercase tracking-wider text-sky-300"></span>
+          <h4 id="modalTitle" class="text-lg font-bold mt-0.5"></h4>
+          <p id="modalMeta" class="text-xs text-slate-300 mt-1"></p>
+        </div>
+        <button onclick="closePaperModal()" class="text-slate-300 hover:text-white text-sm font-semibold px-2.5 py-1 rounded border border-slate-700">
+          Close ✕
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-5 flex-1" id="modalQuestionsContainer">
+        <!-- Populated dynamically -->
+      </div>
+
+      <div class="px-6 py-3 bg-slate-50 border-t border-slate-200 flex flex-wrap justify-between items-center gap-3">
+        <span class="text-xs text-slate-500">Tip: Try answering each question on paper before clicking "Show Model Answer".</span>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAllAnswers(true)" class="text-xs font-semibold px-3 py-1.5 rounded bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100">
+            Reveal All Answers
+          </button>
+          <button onclick="window.print()" class="text-xs font-semibold px-3 py-1.5 rounded bg-slate-800 text-white hover:bg-slate-900">
+            Print / Save Exam PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-6 px-4 mt-12">
+    <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center text-xs text-slate-500 gap-4">
+      <div>
+        <strong class="text-slate-800">CIT 3110 Group Project – Group 2</strong> • Built with Google Antigravity IDE v2.0
+      </div>
+      <div>
+        Team: Osama Ahmed (461033163) • Faizan Khalid (471036733) • Md Robin Hossain (4610276638) • Ahbab Hasan Akib (461031613)
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const examPapers = [
+      {
+        id: "cit3110-final-2025",
+        courseCode: "CIT 3110",
+        courseTitle: "Explore a Digital Tool or Technology",
+        department: "CIT",
+        year: "2025",
+        semester: "First Semester 2025–2026",
+        examType: "Final Exam",
+        duration: "120 Mins",
+        totalMarks: "40 Marks",
+        difficulty: "Moderate",
+        topics: ["Agentic IDEs", "Prompt Engineering", "Cloud Privacy", "Software Evaluation"],
+        questions: [
+          {
+            qNum: "Q1 (10 Marks)",
+            question: "Explain the primary difference between a traditional code autocomplete extension and an agent-first development environment such as Google Antigravity.",
+            answer: "A traditional autocomplete tool only suggests single lines or snippets inside an active text file. In contrast, an agent-first IDE like Google Antigravity uses autonomous AI agents to create structured multi-step plans (tasks.md and implementation_plan.md), create and edit multiple project files, run terminal commands in a sandbox, and verify results in an integrated browser."
+          },
+          {
+            qNum: "Q2 (15 Marks)",
+            question: "What are Interactive Artifacts in Google Antigravity, and how do they help a beginner verify a web application without reading hundreds of lines of raw code?",
+            answer: "Interactive Artifacts are structured outputs generated by the AI agent—such as task checklists, implementation plans, file comparison diffs, and live browser screenshots. Beginners can review these visual summaries and leave inline comments directly on an Artifact to request layout adjustments without manually debugging complex code."
+          },
+          {
+            qNum: "Q3 (15 Marks)",
+            question: "State two privacy or security precautions a university student must follow when using a cloud-connected AI coding tool.",
+            answer: "(1) Never include sensitive personal data, real student IDs, or private API keys/passwords in prompts or workspace files sent to cloud models. (2) Keep 'Strict / Sandboxed Mode' enabled so the AI agent cannot run terminal commands or modify system files without explicit human approval."
+          }
+        ]
+      },
+      {
+        id: "is3102-final-2025",
+        courseCode: "IS 3102",
+        courseTitle: "Database Management Systems",
+        department: "IS",
+        year: "2025",
+        semester: "Second Semester 2025–2026",
+        examType: "Final Exam",
+        duration: "120 Mins",
+        totalMarks: "50 Marks",
+        difficulty: "High",
+        topics: ["SQL Joins", "3NF Normalization", "ER Diagrams", "ACID Transactions"],
+        questions: [
+          {
+            qNum: "Q1 (15 Marks)",
+            question: "Write an SQL query to list all students (StudentID, FullName) who scored above 85 in the course 'IS 3102' ordered by highest score first.",
+            answer: "SELECT s.StudentID, s.FullName, e.Score FROM Students s JOIN Enrollments e ON s.StudentID = e.StudentID WHERE e.CourseCode = 'IS 3102' AND e.Score > 85 ORDER BY e.Score DESC;"
+          },
+          {
+            qNum: "Q2 (20 Marks)",
+            question: "When is a relational table in Third Normal Form (3NF)? Give one example of a transitive dependency violation and how to fix it.",
+            answer: "A table is in 3NF if it is in 2NF and no non-prime attribute is transitively dependent on the primary key. For example, storing (StudentID, DepartmentID, DepartmentBuilding) violates 3NF because DepartmentBuilding depends on DepartmentID. Splitting Departments into a separate table fixes the anomaly."
+          },
+          {
+            qNum: "Q3 (15 Marks)",
+            question: "Define the four ACID properties of a database transaction.",
+            answer: "Atomicity (all operations succeed or none do), Consistency (database moves from one valid state to another), Isolation (concurrent transactions do not interfere), and Durability (committed changes persist even after a power failure)."
+          }
+        ]
+      },
+      {
+        id: "cs2201-final-2024",
+        courseCode: "CS 2201",
+        courseTitle: "Data Structures & Algorithms",
+        department: "CS",
+        year: "2024",
+        semester: "First Semester 2024–2025",
+        examType: "Final Exam",
+        duration: "120 Mins",
+        totalMarks: "50 Marks",
+        difficulty: "High",
+        topics: ["Binary Search Trees", "Time Complexity", "Hash Tables", "Graph BFS/DFS"],
+        questions: [
+          {
+            qNum: "Q1 (15 Marks)",
+            question: "Compare the worst-case and average-case time complexity of searching for a key in a Binary Search Tree (BST) versus a Hash Table.",
+            answer: "In a balanced BST, average search takes O(log n), while a skewed BST degrades to O(n) in the worst case. A Hash Table provides O(1) average search time and O(n) worst-case time when hash collisions place all keys in one bucket."
+          },
+          {
+            qNum: "Q2 (20 Marks)",
+            question: "Which data structure is used internally to implement Breadth-First Search (BFS) versus Depth-First Search (DFS) on a graph?",
+            answer: "Breadth-First Search (BFS) uses a First-In-First-Out (FIFO) Queue to explore nodes level by level. Depth-First Search (DFS) uses a Last-In-First-Out (LIFO) Stack (or recursion call stack)."
+          }
+        ]
+      },
+      {
+        id: "cit2405-final-2025",
+        courseCode: "CIT 2405",
+        courseTitle: "Computer Networks & Data Communications",
+        department: "CIT",
+        year: "2025",
+        semester: "First Semester 2025–2026",
+        examType: "Final Exam",
+        duration: "120 Mins",
+        totalMarks: "45 Marks",
+        difficulty: "Moderate",
+        topics: ["OSI 7 Layers", "TCP vs UDP", "IPv4 Subnetting", "DNS & HTTP"],
+        questions: [
+          {
+            qNum: "Q1 (15 Marks)",
+            question: "State three key differences between TCP and UDP at the Transport Layer.",
+            answer: "(1) TCP is connection-oriented (3-way handshake), whereas UDP is connectionless. (2) TCP guarantees reliable, ordered delivery with retransmission, while UDP is best-effort. (3) TCP has higher header overhead (20 bytes minimum) compared to UDP's 8-byte header."
+          },
+          {
+            qNum: "Q2 (15 Marks)",
+            question: "Given the network address 192.168.10.0/26, how many usable host IP addresses are available per subnet?",
+            answer: "A /26 prefix leaves 32 - 26 = 6 host bits. Total addresses = 2^6 = 64. Subtracting the network and broadcast addresses leaves 64 - 2 = 62 usable host IP addresses."
+          }
+        ]
+      },
+      {
+        id: "cs2201-midterm-2025",
+        courseCode: "CS 2201",
+        courseTitle: "Data Structures & Algorithms",
+        department: "CS",
+        year: "2025",
+        semester: "First Semester 2025–2026",
+        examType: "Midterm Exam",
+        duration: "60 Mins",
+        totalMarks: "25 Marks",
+        difficulty: "Moderate",
+        topics: ["Linked Lists", "Stacks & Queues", "Big-O Notation"],
+        questions: [
+          {
+            qNum: "Q1 (12 Marks)",
+            question: "Why is inserting a new node at the head of a singly linked list O(1), while inserting at the head of a dynamic array is O(n)?",
+            answer: "Inserting at the head of a singly linked list only requires updating two pointers (newNode.next = head; head = newNode), which takes constant O(1) time. In a dynamic array, all existing n elements must be shifted one index to the right, taking O(n) linear time."
+          }
+        ]
+      },
+      {
+        id: "is3102-final-2023",
+        courseCode: "IS 3102",
+        courseTitle: "Database Management Systems",
+        department: "IS",
+        year: "2023",
+        semester: "Second Semester 2023–2024",
+        examType: "Final Exam",
+        duration: "120 Mins",
+        totalMarks: "50 Marks",
+        difficulty: "Moderate",
+        topics: ["Primary & Foreign Keys", "GROUP BY & HAVING", "Views & Indexes"],
+        questions: [
+          {
+            qNum: "Q1 (15 Marks)",
+            question: "What is the difference between the WHERE clause and the HAVING clause in an SQL query?",
+            answer: "WHERE filters individual rows before grouping (GROUP BY) and cannot contain aggregate functions. HAVING filters grouped summary rows after GROUP BY has been applied and can filter on aggregate functions like COUNT() or AVG()."
+          }
+        ]
+      }
+    ];
+
+    let savedPaperIds = new Set(["cit3110-final-2025"]);
+    let showSavedOnly = false;
+
+    function renderPapers(list) {
+      const grid = document.getElementById("papersGrid");
+      const heading = document.getElementById("resultsCountHeading");
+      const badge = document.getElementById("savedCounterBadge");
+      badge.textContent = `Saved for Revision: ${savedPaperIds.size}`;
+      heading.textContent = `Showing ${list.length} Past Exam Paper${list.length === 1 ? "" : "s"}`;
+
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-white border border-slate-200 rounded-xl p-8 text-center">
+            <p class="text-sm font-semibold text-slate-800">No matching past exam papers found.</p>
+            <p class="text-xs text-slate-500 mt-1">Try clearing your search box or switching the department/year filter.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = list.map(paper => {
+        const isSaved = savedPaperIds.has(paper.id);
+        return `
+          <article class="bg-white rounded-xl border border-slate-200 p-5 flex flex-col justify-between hover:border-blue-500 transition">
+            <div>
+              <div class="flex justify-between items-start gap-2 mb-3">
+                <span class="inline-block text-xs font-bold px-2.5 py-1 rounded bg-blue-50 text-blue-800 border border-blue-200">
+                  ${paper.courseCode}
+                </span>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-xs font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-700">
+                    ${paper.examType} • ${paper.year}
+                  </span>
+                  <button
+                    onclick="toggleSavePaper('${paper.id}')"
+                    class="text-xs px-2 py-0.5 rounded border ${isSaved ? 'bg-amber-50 border-amber-300 text-amber-800 font-semibold' : 'bg-white border-slate-200 text-slate-500 hover:text-slate-800'}"
+                    title="Bookmark for final exam revision"
+                  >
+                    ${isSaved ? '★ Saved' : '☆ Save'}
+                  </button>
+                </div>
+              </div>
+
+              <h4 class="font-bold text-slate-900 text-base mb-1">${paper.courseTitle}</h4>
+              <p class="text-xs text-slate-500 mb-3">${paper.semester} • ${paper.duration} • ${paper.totalMarks}</p>
+
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                ${paper.topics.map(t => `<span class="text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded">${t}</span>`).join("")}
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+              <span class="text-xs text-slate-500">${paper.questions.length} Exam Questions Included</span>
+              <button
+                onclick="openPaperModal('${paper.id}')"
+                class="bg-slate-900 hover:bg-blue-700 text-white text-xs font-semibold px-3.5 py-2 rounded-lg transition"
+              >
+                View Questions &amp; Key
+              </button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function filterPapers() {
+      const q = document.getElementById("searchInput").value.trim().toLowerCase();
+      const dept = document.getElementById("departmentSelect").value;
+      const year = document.getElementById("yearSelect").value;
+
+      const filtered = examPapers.filter(p => {
+        const matchesQuery = !q ||
+          p.courseCode.toLowerCase().includes(q) ||
+          p.courseTitle.toLowerCase().includes(q) ||
+          p.topics.some(t => t.toLowerCase().includes(q));
+        const matchesDept = dept === "ALL" || p.department === dept;
+        const matchesYear = year === "ALL" || p.year === year;
+        const matchesSaved = !showSavedOnly || savedPaperIds.has(p.id);
+        return matchesQuery && matchesDept && matchesYear && matchesSaved;
+      });
+
+      renderPapers(filtered);
+    }
+
+    function setQuickCourse(code) {
+      document.getElementById("searchInput").value = code === "ALL" ? "" : code;
+      filterPapers();
+    }
+
+    function resetFilters() {
+      document.getElementById("searchInput").value = "";
+      document.getElementById("departmentSelect").value = "ALL";
+      document.getElementById("yearSelect").value = "ALL";
+      showSavedOnly = false;
+      document.getElementById("showSavedOnlyBtn").className =
+        "text-xs font-medium px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 transition";
+      filterPapers();
+    }
+
+    function toggleSavePaper(id) {
+      if (savedPaperIds.has(id)) {
+        savedPaperIds.delete(id);
+      } else {
+        savedPaperIds.add(id);
+      }
+      filterPapers();
+    }
+
+    function toggleSavedFilter() {
+      showSavedOnly = !showSavedOnly;
+      const btn = document.getElementById("showSavedOnlyBtn");
+      btn.className = showSavedOnly
+        ? "text-xs font-semibold px-3 py-1.5 rounded-lg border border-amber-400 bg-amber-50 text-amber-900 transition"
+        : "text-xs font-medium px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 transition";
+      filterPapers();
+    }
+
+    function openPaperModal(id) {
+      const paper = examPapers.find(p => p.id === id);
+      if (!paper) return;
+
+      document.getElementById("modalBadge").textContent = `${paper.courseCode} • ${paper.examType} (${paper.year})`;
+      document.getElementById("modalTitle").textContent = paper.courseTitle;
+      document.getElementById("modalMeta").textContent = `${paper.semester} | Duration: ${paper.duration} | Maximum Marks: ${paper.totalMarks}`;
+
+      const container = document.getElementById("modalQuestionsContainer");
+      container.innerHTML = paper.questions.map((item, idx) => `
+        <div class="border border-slate-200 rounded-lg p-4 bg-white">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-bold text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">${item.qNum}</span>
+            <button
+              onclick="toggleSingleAnswer(${idx})"
+              class="text-xs font-semibold text-blue-700 hover:underline"
+            >
+              Show / Hide Model Answer
+            </button>
+          </div>
+          <p class="text-sm text-slate-900 font-medium leading-relaxed">${item.question}</p>
+          <div id="answer-box-${idx}" class="hidden mt-3 pt-3 border-t border-slate-200 bg-emerald-50/60 p-3 rounded text-xs text-slate-800 leading-relaxed">
+            <strong class="text-emerald-900 block mb-1">✓ Official Model Answer Key:</strong>
+            ${item.answer}
+          </div>
+        </div>
+      `).join("");
+
+      const modal = document.getElementById("paperModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function openQuickQuiz() {
+      openPaperModal("cit3110-final-2025");
+    }
+
+    function toggleSingleAnswer(idx) {
+      const box = document.getElementById(`answer-box-${idx}`);
+      if (box) box.classList.toggle("hidden");
+    }
+
+    function toggleAllAnswers(show) {
+      const boxes = document.querySelectorAll("[id^='answer-box-']");
+      boxes.forEach(b => {
+        if (show) b.classList.remove("hidden");
+        else b.classList.add("hidden");
+      });
+    }
+
+    function closePaperModal() {
+      const modal = document.getElementById("paperModal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    // Initial render
+    filterPapers();
+  </script>
+</body>
+</html>
